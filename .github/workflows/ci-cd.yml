@@ -39,6 +39,10 @@ jobs:
         run: |
           docker build -t ghcr.io/${{ github.repository_owner }}/devsecops-flask-project:latest .
 
+      - name: Push Docker Image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/devsecops-flask-project:latest
+
       - name: Scan Docker Image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
@@ -62,10 +66,14 @@ jobs:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
           IMAGE: ghcr.io/${{ github.repository_owner }}/devsecops-flask-project:latest
+          GHCR_USER: ${{ github.actor }}
+          GHCR_PAT: ${{ secrets.GHCR_PAT }}
         run: |
-          ssh -o StrictHostKeyChecking=no $USER@$HOST \
-           "docker pull $IMAGE && \
+          ssh -o StrictHostKeyChecking=no $USER@$HOST "
+            echo $GHCR_PAT | docker login ghcr.io -u $GHCR_USER --password-stdin && \
+            docker pull $IMAGE && \
             docker stop devsecops-flask || true && \
             docker rm devsecops-flask || true && \
-            docker run -d -p 5000:5000 --name devsecops-flask $IMAGE"
-          
+            docker run -d -p 5000:5000 --name devsecops-flask $IMAGE
+          "
+
