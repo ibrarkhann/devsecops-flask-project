@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 # Security: Use config properly
 # To check gitleaks functionality
-app.config['SECRET_KEY'] = 'supersecretkey'
+app.config['SECRET_KEY'] = 'supersecretkey02'
 app.config["BOOTSTRAP_SERVE_LOCAL"] = True
 app.config["CKEDITOR_SERVE_LOCAL"] = True
 
