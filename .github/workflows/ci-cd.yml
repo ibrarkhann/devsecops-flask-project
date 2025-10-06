@@ -8,7 +8,7 @@ on:
 
 jobs:
   gitleaks:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,7 +22,7 @@ jobs:
           ./gitleaks detect --source=. --config=.gitleaks.toml --verbose --exit-code 1
 
   build-and-scan:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: gitleaks
     steps:
       - name: Checkout code
@@ -52,7 +52,7 @@ jobs:
           image-ref: ghcr.io/${{ github.repository_owner }}/devsecops-flask-project:latest
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build-and-scan
     if: github.ref == 'refs/heads/main'
     steps:
