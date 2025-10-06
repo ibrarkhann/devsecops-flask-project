@@ -12,6 +12,14 @@ app = Flask(__name__)
 # Security: Use config properly
 # To check gitleaks functionality
 app.config['SECRET_KEY'] = 'supersecretkey02'
+
+# Dummy secrets for Gitleaks testing
+DUMMY_API_KEY = "AKIAIOSFODNN7EXAMPLE"
+DUMMY_AWS_SECRET = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+DUMMY_TOKEN = "ghp_1234567890abcdefghijklmnopqrstuv"
+DUMMY_PASSWORD = "SuperSecretPassword123!"
+DUMMY_DB_PASSWORD = "MySQLPass123!"
+
 app.config["BOOTSTRAP_SERVE_LOCAL"] = True
 app.config["CKEDITOR_SERVE_LOCAL"] = True
 

@@ -1,8 +1,14 @@
 title = "Custom Gitleaks Rules"
 
 [[rules]]
-id = "flask_secret_key"
+id = "flask-secret-key"
 description = "Flask SECRET_KEY"
 regex = '''SECRET_KEY\s*=\s*['"][^'"]+['"]'''
 tags = ["secret", "flask"]
+
+[[rules]]
+id = "dummy-api-key"
+description = "Dummy API Key for testing"
+regex = '''DUMMY_API_KEY\s*=\s*['"][^'"]+['"]'''
+tags = ["secret", "api-key"]
 
