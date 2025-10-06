@@ -12,11 +12,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Run Gitleaks (Secrets Scan)
         uses: zricethezav/gitleaks-action@v2
         with:
-          args: '--path=. --exit-code 1'
+          args: 'detect --source=. --verbose --exit-code 1'
 
   build-and-scan:
     runs-on: ubuntu-latest
