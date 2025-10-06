@@ -1,0 +1,7 @@
+title = "Custom Gitleaks Rules"
+
+[[rules]]
+description = "Flask SECRET_KEY"
+regex = '''SECRET_KEY\s*=\s*['"][^'"]+['"]'''
+tags = ["secret", "flask"]
+
