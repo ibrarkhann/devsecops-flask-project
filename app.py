@@ -14,7 +14,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey02'
 
 # Dummy secrets for Gitleaks testing
-DUMMY_API_KEY = "AKIAIOSFODNN7EXAMPLE"
 DUMMY_AWS_SECRET = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 DUMMY_TOKEN = "ghp_1234567890abcdefghijklmnopqrstuv"
 DUMMY_PASSWORD = "SuperSecretPassword123!"
